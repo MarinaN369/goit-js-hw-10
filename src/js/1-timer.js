@@ -3,15 +3,15 @@ import "flatpickr/dist/flatpickr.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
-const inputEl = document.querySelector('#datetime-picker');
-const buttonEl = document.querySelector('[data-start]');
-const daysEl = document.querySelector('[data-days]');
-const hoursEl = document.querySelector('[data-hours]');
-const minutesEl = document.querySelector('[data-minutes]');
-const secondsEl = document.querySelector('[data-seconds]');
+const inpotForme = document.querySelector('#datetime-picker');
+const startBtn = document.querySelector('[data-start]');
+const daysElem = document.querySelector('[data-days]');
+const hoursElem = document.querySelector('[data-hours]');
+const minutesElem = document.querySelector('[data-minutes]');
+const secondsElem = document.querySelector('[data-seconds]');
 
 let userSelectedDate;
-buttonEl.disabled = true;
+startBtn.disabled = true;
 
 const options = {
   enableTime: true,
@@ -21,7 +21,7 @@ const options = {
   onClose(selectedDates) {
     userSelectedDate = selectedDates[0];
     if (userSelectedDate <= new Date().getTime()) {
-      buttonEl.disabled = true;
+      startBtn.disabled = true;
       iziToast.show({
         title: '❌',
         message: 'Please choose a date in the future',
@@ -33,7 +33,7 @@ const options = {
         closeOnClick: true,
       });
     } else {
-      buttonEl.disabled = false;
+      startBtn.disabled = false;
     }
   },
 };
