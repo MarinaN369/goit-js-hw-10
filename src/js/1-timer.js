@@ -3,7 +3,8 @@ import "flatpickr/dist/flatpickr.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
-const inpotForme = document.querySelector('#datetime-picker');
+const inputForme = document.querySelector('#datetime-picker');
+const clockface = document.querySelector('.field');
 const startBtn = document.querySelector('[data-start]');
 const daysElem = document.querySelector('[data-days]');
 const hoursElem = document.querySelector('[data-hours]');
@@ -38,7 +39,7 @@ const options = {
   },
 };
 
-flatpickr(inputEl, options);
+flatpickr(inputForme, options);
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -63,21 +64,21 @@ function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 }
 
-buttonEl.addEventListener('click', onStartTimer);
+startBtn.addEventListener('click', onStartTimer);
 
 function onStartTimer() {
-  buttonEl.disabled = true;
-  inputEl.disabled = true;
+  startBtn.disabled = true;
+  inputForme.disabled = true;
   const interval = setInterval(() => {
     const diff = userSelectedDate - Date.now();
     if (diff <= 1000) {
       clearInterval(interval);
-      inputEl.disabled = false;
+      inputForme.disabled = false;
     }
     const time = convertMs(diff);
-    daysEl.textContent = addLeadingZero(time.days);
-    hoursEl.textContent = addLeadingZero(time.hours);
-    minutesEl.textContent = addLeadingZero(time.minutes);
-    secondsEl.textContent = addLeadingZero(time.seconds);
+    daysElem.textContent = addLeadingZero(time.days);
+    hoursElem.textContent = addLeadingZero(time.hours);
+    minutesElem.textContent = addLeadingZero(time.minutes);
+    secondsElem.textContent = addLeadingZero(time.seconds);
   }, 1000);
 }
